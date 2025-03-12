@@ -1,121 +1,148 @@
 const mapStyle = [
   {
-    "featureType": "poi.attraction",
-    "elementType": "labels.icon",
-    "stylers": [
+    featureType: 'poi.attraction',
+    elementType: 'labels.icon',
+    stylers: [
       {
-        "visibility": "off"
-      }
-    ]
+        visibility: 'off',
+      },
+    ],
   },
   {
-    "featureType": "poi.business",
-    "elementType": "labels.icon",
-    "stylers": [
+    featureType: 'poi.business',
+    elementType: 'labels.icon',
+    stylers: [
       {
-        "visibility": "off"
-      }
-    ]
+        visibility: 'off',
+      },
+    ],
   },
   {
-    "featureType": "poi.government",
-    "elementType": "labels.icon",
-    "stylers": [
+    featureType: 'poi.government',
+    elementType: 'labels.icon',
+    stylers: [
       {
-        "visibility": "off"
-      }
-    ]
+        visibility: 'off',
+      },
+    ],
   },
   {
-    "featureType": "poi.medical",
-    "elementType": "labels.icon",
-    "stylers": [
+    featureType: 'poi.medical',
+    elementType: 'labels.icon',
+    stylers: [
       {
-        "visibility": "off"
-      }
-    ]
+        visibility: 'off',
+      },
+    ],
   },
   {
-    "featureType": "poi.park",
-    "elementType": "labels.icon",
-    "stylers": [
+    featureType: 'poi.park',
+    elementType: 'labels.icon',
+    stylers: [
       {
-        "visibility": "off"
-      }
-    ]
+        visibility: 'off',
+      },
+    ],
   },
   {
-    "featureType": "poi.place_of_worship",
-    "elementType": "labels.icon",
-    "stylers": [
+    featureType: 'poi.place_of_worship',
+    elementType: 'labels.icon',
+    stylers: [
       {
-        "visibility": "off"
-      }
-    ]
+        visibility: 'off',
+      },
+    ],
   },
   {
-    "featureType": "poi.school",
-    "elementType": "labels.icon",
-    "stylers": [
+    featureType: 'poi.school',
+    elementType: 'labels.icon',
+    stylers: [
       {
-        "visibility": "off"
-      }
-    ]
+        visibility: 'off',
+      },
+    ],
   },
   {
-    "featureType": "poi.sports_complex",
-    "elementType": "labels.icon",
-    "stylers": [
+    featureType: 'poi.sports_complex',
+    elementType: 'labels.icon',
+    stylers: [
       {
-        "visibility": "off"
-      }
-    ]
+        visibility: 'off',
+      },
+    ],
   },
   {
-    "featureType": "road.highway",
-    "elementType": "geometry.fill",
-    "stylers": [
+    featureType: 'road.arterial',
+    elementType: 'labels.text.fill',
+    stylers: [
       {
-        "color": "#fff399"
-      }
-    ]
+        color: '#ffc7ea',
+      },
+    ],
   },
   {
-    "featureType": "road.local",
-    "elementType": "labels.text",
-    "stylers": [
+    featureType: 'road.highway',
+    elementType: 'geometry.fill',
+    stylers: [
       {
-        "visibility": "off"
-      }
-    ]
+        color: '#e3e3e3',
+      },
+    ],
   },
   {
-    "featureType": "road.local",
-    "elementType": "labels.text.fill",
-    "stylers": [
+    featureType: 'road.highway',
+    elementType: 'geometry.stroke',
+    stylers: [
       {
-        "color": "#ffc7ea"
-      }
-    ]
+        color: '#bfbfbf',
+      },
+    ],
   },
   {
-    "featureType": "road.local",
-    "elementType": "labels.text.stroke",
-    "stylers": [
+    featureType: 'road.local',
+    elementType: 'labels.text',
+    stylers: [
       {
-        "visibility": "off"
-      }
-    ]
+        visibility: 'off',
+      },
+    ],
   },
   {
-    "featureType": "transit.station.bus",
-    "elementType": "labels.icon",
-    "stylers": [
+    featureType: 'road.local',
+    elementType: 'labels.text.fill',
+    stylers: [
       {
-        "visibility": "off"
-      }
-    ]
-  }
-]
+        color: '#ffa3dd',
+      },
+    ],
+  },
+  {
+    featureType: 'road.local',
+    elementType: 'labels.text.stroke',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'transit.station.bus',
+    elementType: 'labels.icon',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'transit.station.bus',
+    elementType: 'labels.text',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+];
 
 export default mapStyle;
