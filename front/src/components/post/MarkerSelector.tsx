@@ -7,10 +7,9 @@ import {
   PressableProps,
   ScrollView,
 } from 'react-native';
-
 import {colors} from '@/constants';
 import type {MarkerColor} from '@/types';
-import CustomMarker from './CustomMarker';
+import CustomMarker from '../common/CustomMarker';
 
 interface MarkerSelectorProps extends PressableProps {
   markerColor: MarkerColor;

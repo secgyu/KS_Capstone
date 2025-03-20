@@ -15,7 +15,7 @@ import { User } from 'src/auth/user.entity';
 @Controller('favorites')
 @UseGuards(AuthGuard())
 export class FavoriteController {
-  constructor(private favoriteService: FavoriteService) {}
+  constructor(private favoriteService: FavoriteService) { }
 
   @Get('/my')
   async getMyFavoritePosts(@Query('page') page: number, @GetUser() user: User) {

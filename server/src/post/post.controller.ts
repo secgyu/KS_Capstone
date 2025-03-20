@@ -21,7 +21,7 @@ import { User } from 'src/auth/user.entity';
 @Controller()
 @UseGuards(AuthGuard())
 export class PostController {
-  constructor(private postService: PostService) {}
+  constructor(private postService: PostService) { }
 
   @Get('/markers/my')
   getAllMarkers(@GetUser() user: User) {
