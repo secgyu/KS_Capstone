@@ -18,8 +18,9 @@ function useGetAddress(location: LatLng) {
           : `${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
 
         setResult(address);
-      } catch (error) {
-        setResult(errorMessages.CANNOT_GET_ADDRESS);
+      } catch (e) {
+        const error = e as Error;
+        setResult('에러 발생 : ' + error.message + error.stack);
       }
     })();
   }, [latitude, longitude]);

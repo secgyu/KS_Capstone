@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { SafeAreaView, StyleSheet, TextInput, View } from "react-native";
 import Toast from "react-native-toast-message";
 import InputField from "@/components/common/InputField";
@@ -7,6 +7,36 @@ import useForm from "@/hooks/useForm";
 import useAuth from "@/hooks/queries/useAuth";
 import { validateSignup } from "@/utils";
 import { errorMessages } from "@/constants";
+import { Text } from "react-native";
+import { ScrollView } from "react-native";
+import axios from "axios";
+
+function formatAxiosError(error: Error) {
+  if (axios.isAxiosError(error)) {
+    const url = error.config?.url;
+    const method = error.config?.method;
+    const serverData = error.response?.data;
+
+    return JSON.stringify(
+      {
+        where: `${method?.toUpperCase()} ${url}`,
+        status: `res:${error.response?.status}, stat:${error.status}`,
+        code: error.code,
+        cause: error.cause,
+        message: `serverMessage:${serverData?.message}\n\n` + `serverData:${serverData}` + `errorMSG:${error.message}`,
+        // dev only
+        stack: process.env.NODE_ENV === "development" ? error.stack : error.stack,
+        // 필요 시 서버 validation errors
+        errors: serverData?.errors,
+      },
+      null,
+      2
+    );
+  } else {
+    // AxiosError 가 아닐 때
+    return error.toString();
+  }
+}
 
 function SignupScreen() {
   const { signupMutation, loginMutation } = useAuth();
@@ -17,6 +47,7 @@ function SignupScreen() {
     validate: validateSignup,
   });
 
+  const [errorMessage, setErrorMessage] = useState("");
   const handleSubmit = () => {
     const { email, password } = signup.values;
     signupMutation.mutate(
@@ -26,10 +57,11 @@ function SignupScreen() {
         onError: (error) => {
           Toast.show({
             type: "error",
-            text1: error.response?.data.message || errorMessages.UNEXPECT_ERROR,
+            text1: error.response?.data.message || error.message + error.stack || errorMessages.UNEXPECT_ERROR,
             position: "bottom",
             visibilityTime: 2000,
           });
+          setErrorMessage(formatAxiosError(error));
         },
       }
     );
@@ -72,6 +104,11 @@ function SignupScreen() {
           {...signup.getTextInputProps("passwordConfirm")}
         />
       </View>
+      <ScrollView>
+        <View>
+          <Text>에러메시지 : {errorMessage}</Text>
+        </View>
+      </ScrollView>
       <CustomButton label="회원가입" onPress={handleSubmit} />
     </SafeAreaView>
   );

@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "697063fa-b438-4d83-9951-d04718c77ac3"
+      }
+    },
+    "android": {
+      "package": "com.gyumin1915.matzipserver"
+    }
+  }
+}

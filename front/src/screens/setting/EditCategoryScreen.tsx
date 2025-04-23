@@ -46,7 +46,7 @@ function EditCategoryScreen({ navigation }: EditCategoryScreenProps) {
       onError: (error) =>
         Toast.show({
           type: "error",
-          text1: error.response?.data.message || errorMessages.UNEXPECT_ERROR,
+          text1: error.response?.data.message || error.message + error.stack || errorMessages.UNEXPECT_ERROR,
           position: "bottom",
         }),
     });

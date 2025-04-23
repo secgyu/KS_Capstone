@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { SafeAreaView, StyleSheet, TextInput, View } from "react-native";
+import React, { useRef, useState } from "react";
+import { SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import Toast from "react-native-toast-message";
 import InputField from "@/components/common/InputField";
 import CustomButton from "@/components/common/CustomButton";
@@ -20,15 +20,19 @@ function LoginScreen() {
     validate: validateLogin,
   });
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleSubmit = () => {
     loginMutation.mutate(login.values, {
-      onError: (error) =>
+      onError: (error) => {
         Toast.show({
           type: "error",
-          text1: error.response?.data.message || errorMessages.UNEXPECT_ERROR,
+          text1: error.response?.data.message || error.message + error.stack || errorMessages.UNEXPECT_ERROR,
           position: "bottom",
           visibilityTime: 2000,
-        }),
+        });
+        setErrorMessage(error.response?.data.message || error.message + error.stack || errorMessages.UNEXPECT_ERROR);
+      },
     });
   };
 
@@ -56,6 +60,11 @@ function LoginScreen() {
           onSubmitEditing={handleSubmit}
           {...login.getTextInputProps("password")}
         />
+        <ScrollView>
+          <View>
+            <Text>에러메시지 : {errorMessage}</Text>
+          </View>
+        </ScrollView>
       </View>
       <CustomButton label="로그인" variant="filled" size="large" onPress={handleSubmit} />
     </SafeAreaView>

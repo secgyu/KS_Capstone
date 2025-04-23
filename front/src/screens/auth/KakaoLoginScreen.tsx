@@ -4,6 +4,8 @@ import useThemeStore from "@/store/useThemeStore";
 import { ThemeMode } from "@/types";
 import axios from "axios";
 import React, { useState } from "react";
+import { ScrollView } from "react-native";
+import { Text } from "react-native";
 import { ActivityIndicator, Dimensions, Platform, SafeAreaView, StyleSheet, View } from "react-native";
 // import Config from "react-native-config";
 import WebView, { WebViewNavigation } from "react-native-webview";
@@ -11,7 +13,8 @@ import WebView, { WebViewNavigation } from "react-native-webview";
 // 리다이렉트 URI (iOS와 Android에서 각각 다른 로컬 주소 사용)
 const REDIRECT_URI = `${
   Platform.OS === "ios" ? `${process.env.EXPO_PUBLIC_API_URL}` : `${process.env.EXPO_PUBLIC_API_URL}`
-}auth/oauth/kakao`;
+}/auth/oauth/kakao`;
+console.log("kakao redirect uri", REDIRECT_URI);
 const Config = { KAKAO_REST_API_KEY: process.env.EXPO_PUBLIC_KAKAO_REST_API_KEY };
 
 function KakaoLoginScreen() {
@@ -50,8 +53,9 @@ function KakaoLoginScreen() {
       });
       console.log("access token:", response.data.access_token);
       kakaoLoginMutation.mutate(response.data.access_token);
-    } catch (error) {
-      console.error("토큰 요청 에러:", error);
+    } catch (e) {
+      const error = e as Error;
+      console.error("토큰 요청 에러:", error.message);
     }
   };
 
@@ -62,6 +66,9 @@ function KakaoLoginScreen() {
           <ActivityIndicator size="small" color={colors[theme].BLACK} />
         </View>
       )}
+      <View>
+        <Text>redirect_URI : {REDIRECT_URI}</Text>
+      </View>
       <WebView
         source={{
           uri: `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${Config.KAKAO_REST_API_KEY}&redirect_uri=${REDIRECT_URI}`,
@@ -71,6 +78,9 @@ function KakaoLoginScreen() {
     </SafeAreaView>
   );
 }
+
+// 일반 회원가입 : axios 에러가 뜨는데 보이질않음.
+// 카카오 로그인 : https 원인 에러가 뜨는거같음.
 
 const styling = (theme: ThemeMode) =>
   StyleSheet.create({

@@ -41,6 +41,20 @@ export default {
     plugins: [
       "expo-asset",
       [
+        "expo-build-properties",
+        {
+          android: {
+            compileSdkVersion: 35,
+            targetSdkVersion: 35,
+            buildToolsVersion: "35.0.0",
+            usesCleartextTraffic: true,
+          },
+          ios: {
+            deploymentTarget: "15.1",
+          },
+        },
+      ],
+      [
         "expo-splash-screen",
         {
           backgroundColor: "#ffffff",
@@ -71,5 +85,10 @@ export default {
       ],
       "expo-apple-authentication",
     ],
+    extra: {
+      eas: {
+        projectId: "286587b9-9118-4363-8b6b-f44ef310e310",
+      },
+    },
   },
 };
