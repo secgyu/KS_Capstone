@@ -20,6 +20,16 @@ import { FavoriteModule } from './favorite/favorite.module';
       database: process.env.DB_DATABASE,
       entities: [__dirname + '/**/*.entity.{js,ts}'],
       synchronize: true,
+      // SSL 옵션 추가
+      ssl: {
+        rejectUnauthorized: false, // RDS나 자체 CA가 있을 경우 true로 교체하고 CA 인증서 경로 지정
+      },
+      // Node.js pg 드라이버용 추가 옵션 (필요 시)
+      extra: {
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      },
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'uploads'),
@@ -31,4 +41,4 @@ import { FavoriteModule } from './favorite/favorite.module';
   ],
   providers: [ConfigService],
 })
-export class AppModule {}
+export class AppModule { }
