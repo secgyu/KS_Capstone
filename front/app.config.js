@@ -19,6 +19,7 @@ export default {
         NSPhotoLibraryUsageDescription: "앱에서 사진 라이브러리에 접근합니다.",
         NSPhotoLibraryAddUsageDescription: "앱에서 사진을 추가할 수 있도록 허용합니다.",
         NSUserNotificationUsageDescription: "앱에서 알림을 보내기 위해 권한이 필요합니다.",
+        NSAppleMusicUsageDescription: "앱 내 오디오 재생 및 음원 라이브러리 접근을 위해 필요합니다.",
       },
     },
     android: {
@@ -84,6 +85,7 @@ export default {
         },
       ],
       "expo-apple-authentication",
+      "@react-native-community/datetimepicker",
     ],
     extra: {
       eas: {
